@@ -1,7 +1,7 @@
 ﻿using Adita.PlexNet.Core.Dialogs;
 using Microsoft.UI.Xaml;
 
-namespace Adita.PlexNet.WinUI.Dialogs.Services
+namespace Adita.PlexNet.WinUI.Dialogs
 {
     /// <summary>
     /// Represents a dialog host provider.

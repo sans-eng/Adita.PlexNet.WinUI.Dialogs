@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "Adita.PlexNet.WinUI.Dialogs.Sample (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "Adita.PlexNet.WinUI.Dialogs.Sample (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
