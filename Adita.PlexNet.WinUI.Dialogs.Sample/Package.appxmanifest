@@ -8,15 +8,15 @@
   IgnorableNamespaces="uap rescap">
 
   <Identity
-    Name="b9b2ce31-f6a8-42a9-9d42-e5fcb6d5c70b"
-    Publisher="CN=weq-a"
+    Name="80074546-62ae-4ac1-88d0-0b142e7ca01d"
+    Publisher="CN=setya"
     Version="1.0.0.0" />
 
-  <mp:PhoneIdentity PhoneProductId="b9b2ce31-f6a8-42a9-9d42-e5fcb6d5c70b" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+  <mp:PhoneIdentity PhoneProductId="80074546-62ae-4ac1-88d0-0b142e7ca01d" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
     <DisplayName>Adita.PlexNet.WinUI.Dialogs.Sample</DisplayName>
-    <PublisherDisplayName>weq-a</PublisherDisplayName>
+    <PublisherDisplayName>setya</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
 

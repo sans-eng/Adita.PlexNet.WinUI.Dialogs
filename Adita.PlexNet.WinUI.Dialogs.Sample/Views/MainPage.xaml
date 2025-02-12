@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page
+    x:Class="Adita.PlexNet.WinUI.Dialogs.Sample.Views.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Adita.PlexNet.WinUI.Dialogs.Sample.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    xmlns:dialog="using:Adita.PlexNet.WinUI.Dialogs"
+    xmlns:dialogViewModels="using:Adita.PlexNet.WinUI.Dialogs.Sample.ViewModels.Dialogs">
+  
+
+    <StackPanel Spacing="20"
+                HorizontalAlignment="Center">
+        <Rectangle Height="1" HorizontalAlignment="Stretch" Stroke="Blue" Fill="Blue"/>
+        <TextBlock Text="Standard dialog" HorizontalAlignment="Center"/>
+        <Button HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Command="{x:Bind ViewModel.ShowDialogCommand}">Show</Button>
+        <Rectangle Height="1" HorizontalAlignment="Stretch" Stroke="Blue" Fill="Blue"/>
+        <StackPanel Spacing="5">
+            <TextBlock Text="Dialog With Return" HorizontalAlignment="Center"/>
+            <TextBlock Text="Return result:" HorizontalAlignment="Center"/>
+            <TextBlock Text="{x:Bind ViewModel.DialogWithReturnResult, Mode=OneWay}" HorizontalAlignment="Center"/>
+            <Button HorizontalAlignment="Center" Command="{x:Bind ViewModel.ShowDialogWithReturnCommand}">Show</Button>
+        </StackPanel>
+        <Rectangle Height="1" HorizontalAlignment="Stretch" Stroke="Blue" Fill="Blue"/>
+        <StackPanel Spacing="5">
+            <TextBlock Text="Dialog With Return and parameter" HorizontalAlignment="Center"/>
+            <TextBox Header="Parameter:" MinWidth="200" Text="{x:Bind ViewModel.Parameter, Mode=TwoWay}" HorizontalAlignment="Center"/>
+            <TextBlock Text="Return result:" HorizontalAlignment="Center"/>
+            <TextBlock Text="{x:Bind ViewModel.DialogWithReturnAndParamResult, Mode=OneWay}" HorizontalAlignment="Center"/>
+            <Button HorizontalAlignment="Center" Command="{x:Bind ViewModel.ShowDialogWithReturnAndParamCommand}">Show</Button>
+        </StackPanel>
+    </StackPanel>
+</Page>

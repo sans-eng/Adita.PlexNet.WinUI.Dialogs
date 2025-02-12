@@ -4,18 +4,23 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:Adita.PlexNet.WinUI.Dialogs.Sample"
-    xmlns:dialogs="using:Adita.PlexNet.WinUI.Dialogs">
+    xmlns:dialog="using:Adita.PlexNet.WinUI.Dialogs"
+    xmlns:dialogViewModels="using:Adita.PlexNet.WinUI.Dialogs.Sample.ViewModels.Dialogs">
     <Application.Resources>
         <ResourceDictionary>
-            
             <ResourceDictionary.MergedDictionaries>
                 <XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls" />
-                <!-- Other merged dictionaries here -->
+                <ResourceDictionary Source="/Templates/DialogTemplate.xaml"/>
+                
             </ResourceDictionary.MergedDictionaries>
             <!-- Other app resources here -->
-            <dialogs:DialogView.ViewTemplates>
-                <dialogs:DialogViewTemplate TargetType="dialogs:DialogHostProvider" ViewTemplate="{StaticResource Test}"/>
-            </dialogs:DialogView.ViewTemplates>
+            <dialog:DialogView.Views>
+                <dialog:DialogViewCollection>
+                    <dialog:DialogViewDescriptor TargetType="dialogViewModels:SampleDialogViewModel" View="{StaticResource SampleDialogViewModelTemplate}"/>
+                    <dialog:DialogViewDescriptor TargetType="dialogViewModels:SampleDialogWithReturnViewModel" View="{StaticResource SampleDialogWithReturnViewModelTemplate}"/>
+                    <dialog:DialogViewDescriptor TargetType="dialogViewModels:SampleDialogWithReturnAndParamViewModel" View="{StaticResource SampleDialogWithReturnAndParamViewModelTemplate}"/>
+                </dialog:DialogViewCollection>
+            </dialog:DialogView.Views>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

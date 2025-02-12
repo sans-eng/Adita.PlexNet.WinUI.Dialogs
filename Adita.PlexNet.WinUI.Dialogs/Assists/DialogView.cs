@@ -1,44 +1,65 @@
-﻿using Microsoft.UI.Xaml;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
+using Microsoft.UI.Xaml;
 
-namespace Adita.PlexNet.WinUI.Dialogs
+namespace Adita.PlexNet.WinUI.Dialogs;
+
+/// <summary>
+/// Represents a class that serve a collection of dialog view.
+/// </summary>
+public static class DialogView
 {
-    /// <summary>
-    /// Represents a class that serve a collection of dialog view.
-    /// </summary>
-    public static class DialogView
-    {
-        #region Dependency properties
-        /// <summary>
-        /// Identifies ViewTemplates property.
-        /// </summary>
-        public static readonly DependencyProperty ViewTemplatesProperty =
-            DependencyProperty.RegisterAttached("ViewTemplates", typeof(DialogViewTemplateCollection), typeof(DialogView), new PropertyMetadata(new DialogViewTemplateCollection()));
-        #endregion Dependency properties
+    #region Private fields
+    private static readonly DialogViewCollection _viewDescriptors = [];
+    #endregion Private fields
 
-        #region Dependency property getters/setters
-        /// <summary>
-        /// Gets a <see cref="DialogViewTemplateCollection"/> from specified <paramref name="resourceDictionary"/>.
-        /// </summary>
-        /// <param name="resourceDictionary">A <see cref="ResourceDictionary"/> to get the <see cref="DialogViewTemplateCollection"/>.</param>
-        /// <returns>A <see cref="DialogViewTemplateCollection"/>.</returns>
-        public static DialogViewTemplateCollection GetViewTemplates(DependencyObject resourceDictionary)
-        {
-            return (DialogViewTemplateCollection)resourceDictionary.GetValue(ViewTemplatesProperty);
-        }
-        /// <summary>
-        /// Sets the specified <paramref name="dialogViewTemplates"/> to specified <paramref name="resourceDictionary"/>.
-        /// </summary>
-        /// <param name="resourceDictionary">A <see cref="ResourceDictionary"/> to sets the specified <paramref name="dialogViewTemplates"/>.</param>
-        /// <param name="dialogViewTemplates">A <see cref="DialogViewTemplateCollection"/> to set.</param>
-        public static void SetViewTemplates(DependencyObject resourceDictionary, DialogViewTemplateCollection dialogViewTemplates)
-        {
-            resourceDictionary.SetValue(ViewTemplatesProperty, dialogViewTemplates);
-        }
-        #endregion Dependency property getters/setters
+    #region Dependency properties
+    /// <summary>
+    /// Identifies ViewTemplates property.
+    /// </summary>
+    public static readonly DependencyProperty ViewsProperty =
+        DependencyProperty.RegisterAttached("Views", typeof(DialogViewCollection), typeof(DialogView), new PropertyMetadata(new DialogViewCollection(), OnViewsChanged));
+    #endregion Dependency properties
+
+    #region Dependency property getters/setters
+    /// <summary>
+    /// Gets a <see cref="DialogViewCollection"/> from specified <paramref name="resourceDictionary"/>.
+    /// </summary>
+    /// <param name="resourceDictionary">A <see cref="ResourceDictionary"/> to get the <see cref="DialogViewCollection"/>.</param>
+    /// <returns>A <see cref="DialogViewCollection"/>.</returns>
+    public static DialogViewCollection GetViews(ResourceDictionary resourceDictionary)
+    {
+        return (DialogViewCollection)resourceDictionary.GetValue(ViewsProperty);
     }
+    /// <summary>
+    /// Sets the specified <paramref name="dialogViews"/> to specified <paramref name="resourceDictionary"/>.
+    /// </summary>
+    /// <param name="resourceDictionary">A <see cref="ResourceDictionary"/> to sets the specified <paramref name="dialogViews"/>.</param>
+    /// <param name="dialogViews">A <see cref="DialogViewCollection"/> to set.</param>
+    public static void SetViews(ResourceDictionary resourceDictionary, DialogViewCollection dialogViews)
+    {
+        resourceDictionary.SetValue(ViewsProperty, dialogViews);
+    }
+    #endregion Dependency property getters/setters
+
+    #region Dependency property changed event handlers
+    private static void OnViewsChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs args)
+    {
+        if (args.OldValue is DialogViewCollection oldViews)
+        {
+            _viewDescriptors.RemoveRange(oldViews);
+        }
+
+        if (args.NewValue is DialogViewCollection newViews)
+        {
+            _viewDescriptors.AddRange(newViews);
+        }
+    }
+    #endregion Dependency property changed event handlers
+
+    #region Internal methods
+    internal static object? GetView<TDialog>()
+    {
+        return _viewDescriptors.FirstOrDefault(v => v.TargetType == typeof(TDialog)) is DialogViewDescriptor descriptor ? descriptor.View : default;
+    }
+    #endregion Internal methods
 }
