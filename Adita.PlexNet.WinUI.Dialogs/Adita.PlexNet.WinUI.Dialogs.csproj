@@ -8,7 +8,7 @@
     <UseWinUI>true</UseWinUI>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Title>Adita.PlexNet.WinUI.Dialogs</Title>
-    <Version>1.0.0.0</Version>
+    <Version>1.0.1.0</Version>
     <Authors>Setya Adi Kurnia</Authors>
     <Company>Adita</Company>
     <Description>A dialogs library that targeting WinUI3 net9.0-windows10.0.19041.0</Description>
@@ -19,9 +19,11 @@
     <RepositoryUrl>https://github.com/sans-eng/Adita.PlexNet.WinUI.Dialogs</RepositoryUrl>
     <PackageProjectUrl>https://github.com/sans-eng/Adita.PlexNet.WinUI.Dialogs</PackageProjectUrl>
     <PackageTags>WinUi;.Net9;Dialog</PackageTags>
-    <PackageReleaseNotes>Initial release</PackageReleaseNotes>
+    <PackageReleaseNotes>Fixed issue JIT release warning</PackageReleaseNotes>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+    <PublishTrimmed>false</PublishTrimmed>
+    <RunAOTCompilation>true</RunAOTCompilation>
   </PropertyGroup>
   <ItemGroup>
     <None Include="..\favicon.png">
@@ -41,7 +43,5 @@
   <ItemGroup>
       <PackageReference Include="Adita.PlexNet.Core.Dialogs" Version="3.0.0" />
       <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.6.250108002" />
-      <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.26100.1742" />
-      <PackageReference Include="Microsoft.Xaml.Behaviors.WinUI.Managed" Version="2.0.9" />
   </ItemGroup>
 </Project>
