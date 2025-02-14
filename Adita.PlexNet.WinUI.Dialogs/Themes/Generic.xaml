@@ -11,8 +11,9 @@
                     <Border
                         Background="{TemplateBinding Background}"
                         BorderBrush="{TemplateBinding BorderBrush}"
-                        BorderThickness="{TemplateBinding BorderThickness}">
-                        <ContentPresenter/>
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        RequestedTheme="{TemplateBinding RequestedTheme}">
+                        <ContentPresenter Grid.Row="1"/>
                     </Border>
                 </ControlTemplate>
             </Setter.Value>

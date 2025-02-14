@@ -18,19 +18,8 @@ public sealed partial class DialogContainer<TReturn, TParam> : DialogContainerBa
 {
     #region Private fields
     private IDialog<TReturn, TParam>? _contentContext;
-    private TParam? _parameter;
     private object? _host;
     #endregion Private fields
-
-    #region Constructors
-    /// <summary>
-    /// Initialize a new instance of <see cref="DialogContainer{TReturn, TParam}"/>.
-    /// </summary>
-    public DialogContainer()
-    {
-        Opened += OnOpened;
-    }
-    #endregion Constructors
 
     #region Public methods
     /// <inheritdoc/>
@@ -53,7 +42,10 @@ public sealed partial class DialogContainer<TReturn, TParam> : DialogContainerBa
             throw new InvalidOperationException("Host is not set.");
         }
 
-        _parameter = param;
+        if (_contentContext != null)
+        {
+            await _contentContext.InitializeAsync(param);
+        }
 
         await ShowAsync();
 
@@ -92,13 +84,6 @@ public sealed partial class DialogContainer<TReturn, TParam> : DialogContainerBa
             dialog.RequestClosing -= OnContentRequestClosing;
         }
         Hide();
-    }
-    private async void OnOpened(ContentDialog sender, ContentDialogOpenedEventArgs args)
-    {
-        if (_parameter != null && _contentContext != null)
-        {
-            await _contentContext.InitializeAsync(_parameter);
-        }
     }
     #endregion Event handlers
 }

@@ -8,7 +8,7 @@
     <UseWinUI>true</UseWinUI>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Title>Adita.PlexNet.WinUI.Dialogs</Title>
-    <Version>1.0.2.0</Version>
+    <Version>1.0.3.0</Version>
     <Authors>Setya Adi Kurnia</Authors>
     <Company>Adita</Company>
     <Description>A dialogs library that targeting WinUI3 net9.0-windows10.0.19041.0</Description>
@@ -19,7 +19,7 @@
     <RepositoryUrl>https://github.com/sans-eng/Adita.PlexNet.WinUI.Dialogs</RepositoryUrl>
     <PackageProjectUrl>https://github.com/sans-eng/Adita.PlexNet.WinUI.Dialogs</PackageProjectUrl>
     <PackageTags>WinUi;.Net9;Dialog</PackageTags>
-    <PackageReleaseNotes>Update dependencies</PackageReleaseNotes>
+    <PackageReleaseNotes>Fixed issue sometimes dialog content context not loaded correctly</PackageReleaseNotes>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
     <PublishTrimmed>false</PublishTrimmed>

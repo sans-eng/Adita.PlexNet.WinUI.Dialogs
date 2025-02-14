@@ -17,19 +17,8 @@ public partial class ParamOnlyDialogContainer<TParam> : DialogContainerBase, IPa
 {
     #region Private fields
     private IParamOnlyDialog<TParam>? _contentContext;
-    private TParam? _parameter;
     private object? _host;
     #endregion Private fields
-
-    #region Constructors
-    /// <summary>
-    /// Initialize a new instance of <see cref="DialogContainer{TReturn, TParam}"/>.
-    /// </summary>
-    public ParamOnlyDialogContainer()
-    {
-        Opened += OnOpened;
-    }
-    #endregion Constructors
 
     #region Public methods
     /// <inheritdoc/>
@@ -52,7 +41,10 @@ public partial class ParamOnlyDialogContainer<TParam> : DialogContainerBase, IPa
             throw new InvalidOperationException("Host is not set.");
         }
 
-        _parameter = param;
+        if (_contentContext != null)
+        {
+            await _contentContext.InitializeAsync(param);
+        }
 
         await ShowAsync();
 
@@ -92,13 +84,6 @@ public partial class ParamOnlyDialogContainer<TParam> : DialogContainerBase, IPa
             dialog.RequestClosing -= OnContentRequestClosing;
         }
         Hide();
-    }
-    private async void OnOpened(ContentDialog sender, ContentDialogOpenedEventArgs args)
-    {
-        if (_parameter != null && _contentContext != null)
-        {
-            await _contentContext.InitializeAsync(_parameter);
-        }
     }
     #endregion Event handlers
 }
